@@ -16,6 +16,11 @@ Or install it yourself as:
 
     $ gem install fluent-plugin-osquery
 
+Create home directory: (It could be unnecessary)
+
+    $ sudo mkdir -p /home/td-agent/.osquery
+    $ sudo chown td-agent /home/td-agent/.osquery
+
 ## Configuration
 
 ### Example
