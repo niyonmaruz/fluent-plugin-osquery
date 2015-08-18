@@ -22,13 +22,10 @@ Or install it yourself as:
 
     <source>
       type osquery
-      tag osquery.memory
-      url http://127.0.0.1:38778/jolokia
-      mbean java.lang:type=Memory
-      attribute HeapMemoryUsage
+      tag osquery
       interval 60
-      inner_path used
-    </match>
+      query select * from processes
+    </source>
 
 ## Contributing
 
