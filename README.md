@@ -16,6 +16,10 @@ Or install it yourself as:
 
     $ gem install fluent-plugin-osquery
 
+When you use with td-agent, install it as below:
+
+    $ sudo /opt/td-agent/embedded/bin/fluent-gem install fluent-plugin-osquery
+
 Create home directory: (It could be unnecessary)
 
     $ sudo mkdir -p /home/td-agent/.osquery
@@ -26,19 +30,15 @@ Create home directory: (It could be unnecessary)
 ### Example
 
     <source>
-      type osquery
+      @type osquery
       tag osquery
       interval 60
       query select * from processes
     </source>
 
-## Contributing
-
-1. Fork it
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new [Pull Request](../../pull/new/master)
+    <match osquery>
+      @type stdout
+    </match>
 
 ## Copyright
 

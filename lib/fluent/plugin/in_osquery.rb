@@ -1,10 +1,15 @@
 # coding: utf-8
+require 'fluent/input'
 module Fluent
   class OsqueryInput < Fluent::Input
     Fluent::Plugin.register_input('osquery', self)
     config_param :tag, :string, default: 'osquery'
     config_param :interval, :integer, default: 60
     config_param :query, :string, default: 'select * from processes'
+
+    unless method_defined?(:router)
+      define_method("router") { Fluent::Engine }
+    end
 
     def initialize
       super
@@ -45,7 +50,7 @@ module Fluent
       jsonrec = JSON.parse(record)
       jsonrec.each do |line|
         @log.debug(line)
-        Engine.emit(@tag, @time, line)
+        router.emit(@tag, @time, line)
       end
     rescue => e
       @log.error('faild to run', error: e.to_s, error_class: e.class.to_s)
