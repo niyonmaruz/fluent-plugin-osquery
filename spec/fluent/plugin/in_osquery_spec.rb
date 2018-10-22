@@ -8,14 +8,14 @@ CONFIG = BASE_CONFIG + %(
   interval 1
 )
 
-describe Fluent::OsqueryInput do
+describe Fluent::Plugin::OsqueryInput do
   before do
     Fluent::Test.setup
   end
 
   describe '#configure' do
     let(:d) do
-      Fluent::Test::InputTestDriver.new(Fluent::OsqueryInput)
+      Fluent::Test::Driver::Input.new(Fluent::Plugin::OsqueryInput)
     end
 
     context 'test of test' do
@@ -29,7 +29,7 @@ describe Fluent::OsqueryInput do
 
   describe '#run' do
     let(:d) do
-      Fluent::Test::InputTestDriver.new(Fluent::OsqueryInput)
+      Fluent::Test::Driver::Input.new(Fluent::Plugin::OsqueryInput)
         .configure(config)
     end
 
